@@ -53,3 +53,14 @@ f1297904506e        schickling/mailcatcher   "mailcatcher --no-qu…"   54 secon
 ブラウザでも確認
 http://localhost
 
+5.PHPStorm設定
+
+- phpstormではappフォルダをリソースルートに
+
+6.laravelmix設定
+
+- laravel-mixにmix.setPublicPath('public');追記
+- vendorは別途コンパイルにしたほうが軽い?はず(未検証
+
+
+
