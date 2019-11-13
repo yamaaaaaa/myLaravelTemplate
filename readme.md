@@ -3,7 +3,7 @@
 # myLaravelTemplate
 
 laravelの環境をDockerで作っています。
-webサーバーは、いろいろpython/golang etc使う可能性を考えてcentos7をベースにapache2.4とphp7.2とmysql5.7
+webサーバーは、いろいろ応用自由を考えてcentos7をベースにapache2.4とphp7.2とmysql5.7
 
 ## 環境設定
 
