@@ -17,18 +17,17 @@ RUN yum install -y epel-release && \
 RUN yum install -y httpd httpd-tools openssh-server openssh-clients openssl sudo which && \
     yum clean all
 
+RUN yum -y install mod_ssl && \
+    yum clean all
+
 # libmcrypt, supervisor
 RUN yum install --enablerepo=epel -y libmcrypt supervisor && \
     yum clean all
 
-# gd-last (for php-gd)
-RUN yum install --enablerepo=remi -y gd-last && \
-    yum clean all
-
 # php
-RUN yum --enablerepo=epel,remi,remi-php72 install -y php php-devel php-gd php-mbstring php-mcrypt php-mysqlnd php-pear php-xml php-opcache && yum clean all
+RUN yum --enablerepo=epel,remi,remi-php74 install -y php php-devel php-gd php-mbstring php-mcrypt php-mysqlnd php-pear php-xml php-opcache php74-php-bcmath && yum clean all
 
-#imagemagick
+#imagemagickyum clean all
 RUN yum -y install ImageMagick
 RUN yum -y install ImageMagick-devel
 RUN pecl install imagick
@@ -36,8 +35,12 @@ RUN pecl install imagick
 # timezone
 RUN cp -p /usr/share/zoneinfo/Japan /etc/localtime
 
+# bcmath
+RUN cp /opt/remi/php74/root/usr/lib64/php/modules/bcmath.so /usr/lib64/php/modules/
+RUN cp /etc/opt/remi/php74/php.d/20-bcmath.ini /etc/php.d/
+
 # httpd 
 RUN systemctl enable httpd.service
 
-EXPOSE 80
+EXPOSE 80 443
 CMD ["/usr/sbin/init"]

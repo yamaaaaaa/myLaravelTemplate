@@ -5,9 +5,12 @@ services:
     privileged: true
     ports:
       - 80:80
+      - 443:443
     volumes:
       - ./src:/var/www/html
       - ./docker/web/httpd-laravel.conf:/etc/httpd/conf.d/httpd-laravel.conf
+      - ./docker/web/server.crt:/etc/httpd/conf.d/server.crt
+      - ./docker/web/server.key:/etc/httpd/conf.d/server.key
       - ./docker/web/php-laravel.ini:/etc/php.d/php-laravel.ini
     depends_on:
       - mysql
